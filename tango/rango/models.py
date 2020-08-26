@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Category(models.Model):
     id = models.IntegerField(primary_key=True, auto_created=True)
@@ -10,7 +11,8 @@ class Category(models.Model):
 
 
 class Page(models.Model):
-    category = models.ForeignKey(Category, True)
+    category = models.ForeignKey(to='Category', on_delete=models.PROTECT)
+    # category = models.ForeignKey(Category)
     title = models.CharField(max_length=128)
     url = models.URLField()
     views = models.IntegerField(default=0)
